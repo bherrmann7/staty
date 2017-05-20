@@ -1,6 +1,30 @@
 # Staty McStatface
 
-an application for analysis of the contents of tables.
+An application for analysis of the contents of tables.
+
+For example,
+
+sql> create table foobar as select 1 a, 'cow' b from dual union select 3, 'apple' from dual union select null, null from dual;
+
+yields table foobar,
+
+<pre>
++------+-------+
+| a    | b     |
++------+-------+
+|    1 | cow   |
+|    3 | apple |
+| NULL | NULL  |
++------+-------+
+</pre>
+
+What I would like to see is the shape of the data in foobar,
+ 
+Analysis for Table FOOBAR - with 3 rows.
+
+||Column||Datatype||Contraints||MAX||MIN|| Distinct || Data Counts||
+|b|char| |cow|apple| 2 | 1:cow 1:apple |
+
 
 ## Getting Started
 
