@@ -1,5 +1,7 @@
 # Staty McStatface
 
+## Introduction
+
 An application for analysis of the contents of tables.
 
 For example,
@@ -22,9 +24,30 @@ What I would like to see is the shape of the data in foobar,
  
 Analysis for Table FOOBAR - with 3 rows.
 
-| Column | Datatype | Constraints | MAX | MIN   | Distinct | Data Counts   | 
-| ------ | -------- | ----------- | --- | ---   | -------- | ------------- |
-| b      | char     |             | cow | apple | 2        | 1:cow 1:apple |
+| Column | Datatype | Null | Min   | Max   | Distinct | Data Counts          | 
+| ------ | -------- | ---- | ----- | ---   | -------- | -------------------- |
+| a      | Number   | Y    | 1     | apple | 2        | 1:NULL 1:cow 1:apple |
+| b      | Char     | Y    | apple | cow   | 2        | 1:NULL 1:1 1:3       |
+
+
+## How
+
+This is a web application.   It asks for connection/schema/user/password/table 
+
+
+## Future
+
+bootstrap ui
+allow many tables to be queried
+remember results in database (datomic? filesystem? sql?)
+analysis can take a while with big tables - email result
+make client clojurescript/react - react to analysis being completed
+render analysis light immediately (aka just table columns/types/size ) and make deeper analysis optional
+be able to analyze full schema
+allow deep linking to table results (for sharing urls with other people)
+results should have full text option (like tables above - for emailing / bug reports)
+
+
 
 
 ## Getting Started
