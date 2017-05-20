@@ -1,4 +1,4 @@
-# Staty McStat Face
+# Staty McStatface
 
 an application for analysis of the contents of tables.
 
