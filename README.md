@@ -22,8 +22,9 @@ What I would like to see is the shape of the data in foobar,
  
 Analysis for Table FOOBAR - with 3 rows.
 
-||Column||Datatype||Contraints||MAX||MIN|| Distinct || Data Counts||
-|b|char| |cow|apple| 2 | 1:cow 1:apple |
+| Column | Datatype | Constraints | MAX | MIN   | Distinct | Data Counts   | 
+| ------ | -------- | ----------- | --- | ---   | -------- | ------------- |
+| b      | char     |             | cow | apple | 2        | 1:cow 1:apple |
 
 
 ## Getting Started
