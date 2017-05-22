@@ -18,11 +18,11 @@
   <form method='post'>
   <table>
      <tr>
-      <td>Schema <td><input name=schema type=text field=35 value=RWH_OADW_H303173>
+      <td>Schema <td><input name=schema type=text field=35>
      <tr>
-      <td>Table  <td><input name=table type=text field=35 value=T_L2_pat_assess_num>
+      <td>Table  <td><input name=table type=text field=35 >
      <tr>
-      <td>Password<td><input name=password type=text field=35 value=N0l0ng3r>
+      <td>Password<td><input name=password type=text field=35 >
       <tr>
       <td><input type=submit value=Compute>
   "))

@@ -17,6 +17,9 @@
                  [org.slf4j/jcl-over-slf4j "1.7.22"]
                  [org.slf4j/log4j-over-slf4j "1.7.22"]
 
+                 [org.clojure/java.jdbc "0.7.0-alpha3"]
+                 [mysql/mysql-connector-java "5.1.6"]
+
                  [hiccup "1.0.5"]]
   :min-lein-version "2.0.0"
   :resource-paths ["config", "resources"]

@@ -32,7 +32,15 @@ Analysis for Table FOOBAR - with 3 rows.
 
 ## How
 
-This is a web application.   It asks for connection/schema/user/password/table 
+This is a web application.   It asks for connection/schema/user/password/table then you push go.
+The application then connects to the database, and executes one or more sql statements to analyze
+a table.  It will use a single sql statement as its first pass, then if it needs to gather 
+data counts, it will execute a seperate pass to gather the Data Counts.
+
+### Step 1 column metadata
+
+Should use JDBC metadata to get column names, type, is_nullable
+   
 
 
 ## Future
@@ -46,8 +54,6 @@ render analysis light immediately (aka just table columns/types/size ) and make 
 be able to analyze full schema
 allow deep linking to table results (for sharing urls with other people)
 results should have full text option (like tables above - for emailing / bug reports)
-
-
 
 
 ## Getting Started
