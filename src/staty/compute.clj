@@ -2,8 +2,6 @@
   (:require [hiccup.core :as h]
             [clojure.java.jdbc :as j]))
 
-(def mysql-db {:dbtype "mysql" :dbname "quiz" :user "quiz" :password "quiz"})
-
 (def stats-types {:notnull #(str "sum(case when " % " is null then 0 else 1 end)")
                   :max #(str "max(" % ")")
                   :min #(str "min(" % ")")
@@ -42,8 +40,11 @@
     (println "\nTable: " (:table_name stats) "   Rows: " (:all_count stats))
     (clojure.pprint/print-table (:cols stats))))
 
+(defn get-database-type []
+  (or (System/getenv "staty_database_type") "mysql"))
+
 (defn compute-stats [username password schema table]
-  (let [db-spec {:dbtype "mysql" :dbname schema :user username :password password}
+  (let [db-spec {:dbtype (get-database-type) :dbname schema :user username :password password}
         stats (get-table-stats db-spec table)]
     (h/html
      [:h2 "Stats for Table: " schema "." table]
