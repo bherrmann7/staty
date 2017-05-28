@@ -22,26 +22,31 @@ yields table foobar,
 
 What I would like to see is the shape of the data in foobar,
  
-Analysis for Table FOOBAR - with 3 rows.
+Analysis for Table DECKS - with 1 rows.
 
-| Column | Datatype | Null | Min   | Max   | Distinct | Data Counts          | 
-| ------ | -------- | ---- | ----- | ---   | -------- | -------------------- |
-| a      | Number   | Y    | 1     | apple | 2        | 1:NULL 1:cow 1:apple |
-| b      | Char     | Y    | apple | cow   | 2        | 1:NULL 1:1 1:3       |
+<pre>
+Table:  decks    Rows:  1
 
+| :column_name | :is_nullable | :type_name | :column_size | :notnull |            :max |            :min | :distinct |
+|--------------+--------------+------------+--------------+----------+-----------------+-----------------+-----------|
+|           id |           NO |        INT |           10 |        1 |               1 |               1 |         1 |
+|         name |          YES |    VARCHAR |           80 |        1 | Clojure Top 100 | Clojure Top 100 |         1 |
+|   card_count |          YES |        INT |           10 |        1 |             100 |             100 |         1 |
+|   image_data |          YES |       BLOB |        65535 |        1 |     [B@193f8713 |     [B@265e62a3 |         1 |
+|         type |          YES |    VARCHAR |           10 |        1 |            text |            text |         1 |
+</pre>
 
 ## How
 
 This is a web application.   It asks for connection/schema/user/password/table then you push go.
 The application then connects to the database, and executes one or more sql statements to analyze
 a table.  It will use a single sql statement as its first pass, then if it needs to gather 
-data counts, it will execute a seperate pass to gather the Data Counts.
+data counts, it will execute a separate pass to gather the Data Counts.
 
 ### Step 1 column metadata
 
-Should use JDBC metadata to get column names, type, is_nullable
-   
-
+get each column name and type, and max, min, distinct, null count for each column
+  
 
 ## Future
 
@@ -49,9 +54,9 @@ bootstrap ui
 allow many tables to be queried
 remember results in database (datomic? filesystem? sql?)
 analysis can take a while with big tables - email result
-make client clojurescript/react - react to analysis being completed
-render analysis light immediately (aka just table columns/types/size ) and make deeper analysis optional
-be able to analyze full schema
+make client clojurescript/react - update in time as analysis is being completed
+    render analysis light immediately (aka just table columns/types/size ) and make deeper analysis optional
+be able to analyze full schema (aka all tables in single shot)
 allow deep linking to table results (for sharing urls with other people)
 results should have full text option (like tables above - for emailing / bug reports)
 
