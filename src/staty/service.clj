@@ -18,19 +18,19 @@
   <form method='post'>
   <table>
      <tr>
-      <td>Schema <td><input name=schema type=text field=35>
+         <td>Username <td><input name=username type=text field=35>
      <tr>
-      <td>Table  <td><input name=table type=text field=35 >
+         <td>Password<td><input name=password type=password field=35 >
      <tr>
-      <td>Password<td><input name=password type=text field=35 >
+         <td>Table  <td><input name=table type=text field=35 >
       <tr>
       <td><input type=submit value=Compute>
   "))
 
 (defn compute-stats [request]
-  (let [{:strs [schema table password]} (:params request)
-        stats (staty.compute/compute-stats schema table password)]
-    (ring-resp/response (str "<h1>Staty McStatface</h1>compute some stats: " stats))))
+  (let [{:strs [username table password]} (:params request)
+        stats (staty.compute/compute-stats username password username table)]
+    (ring-resp/response (str "<h1>Staty McStatface</h1>" stats))))
 
 ;; Defines "/" and "/about" routes with their associated :get handlers.
 ;; The interceptors defined after the verb map (e.g., {:get home-page}

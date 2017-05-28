@@ -28,5 +28,6 @@
   :profiles {:dev {:aliases {"run-dev" ["trampoline" "run" "-m" "staty.server/run-dev"]}
                    :dependencies [[io.pedestal/pedestal.service-tools "0.5.2"]]}
              :uberjar {:aot [staty.server]}}
+  :plugins [[lein-cljfmt "0.5.6"]]
   :main ^{:skip-aot true} staty.server)
 
