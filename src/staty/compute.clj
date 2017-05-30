@@ -53,6 +53,5 @@
                        :user username
                        :password password)
         stats (get-table-stats db-spec table)]
-    (h/html
-     [:pre (stats-to-text stats)])))
+    (stats-to-text stats)))
 

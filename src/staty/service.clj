@@ -22,15 +22,19 @@
      <tr>
          <td>Database Password<td><input name=password type=password size=35 >
      <tr>
-         <td>Table  <td><input name=table type=text size=50 >
+         <td>Table(s)  <td><textarea name=table  cols=100 rows=20 ></textarea>
       <tr>
-      <td><input type=submit value=Compute>
+      <td><input type=submit value=Compute onClick=\"this.disabled=true; this.value='Computing…';\">
   "))
+
+(defn extract-tables [table]
+  (remove empty? (clojure.string/split table #"[\s,]")))
 
 (defn compute-stats [request]
   (let [{:strs [username table password]} (:params request)
-        stats (staty.compute/compute-stats username password  username table)]
-    (ring-resp/response (str "<h1>Staty McStatface</h1>" stats))))
+        stats-all-tables (map #(staty.compute/compute-stats username password  username %) (extract-tables table))
+        stats (clojure.string/join "\n\n" stats-all-tables)]
+    (ring-resp/response (str "<h1>Staty McStatface</h1><pre>" stats "</pre>"))))
 
 ;; Defines "/" and "/about" routes with their associated :get handlers.
 ;; The interceptors defined after the verb map (e.g., {:get home-page}
