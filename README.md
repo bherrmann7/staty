@@ -5,6 +5,8 @@
 
 An application for analysis of the contents of tables.
 
+Named after https://www.nytimes.com/2016/03/22/world/europe/boaty-mcboatface-what-you-get-when-you-let-the-internet-decide.html
+
 For example,
 
 sql> create table foobar as 
