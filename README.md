@@ -6,7 +6,10 @@ An application for analysis of the contents of tables.
 
 For example,
 
-sql> create table foobar as select 1 a, 'cow' b from dual union select 3, 'apple' from dual union select null, null from dual;
+sql> create table foobar as 
+    select 1 a, 'cow' b from dual union
+    select 3, 'apple' from dual union
+    select null, 'cow' from dual ;
 
 yields table foobar,
 
@@ -16,29 +19,24 @@ yields table foobar,
 +------+-------+
 |    1 | cow   |
 |    3 | apple |
-| NULL | NULL  |
+| NULL | cow   |
 +------+-------+
 </pre>
 
 What I would like to see is the shape of the data in foobar,
  
-Analysis for Table DECKS - with 1 rows.
-
 <pre>
-Table:  decks    Rows:  1
+Table:  foobar    Rows:  3
 
-| :column_name | :is_nullable | :type_name | :column_size | :notnull |            :max |            :min | :distinct |
-|--------------+--------------+------------+--------------+----------+-----------------+-----------------+-----------|
-|           id |           NO |        INT |           10 |        1 |               1 |               1 |         1 |
-|         name |          YES |    VARCHAR |           80 |        1 | Clojure Top 100 | Clojure Top 100 |         1 |
-|   card_count |          YES |        INT |           10 |        1 |             100 |             100 |         1 |
-|   image_data |          YES |       BLOB |        65535 |        1 |     [B@193f8713 |     [B@265e62a3 |         1 |
-|         type |          YES |    VARCHAR |           10 |        1 |            text |            text |         1 |
+| :column_name |               :type | :notnull_count | :max |  :min | :distinct |
+|--------------+---------------------+----------------+------+-------+-----------|
+|            a |          BIGINT(19) |              2 |    3 |     1 |         2 |
+|            b | VARCHAR(5) NOT NULL |                |  cow | apple |         2 |
 </pre>
 
 ## How
 
-This is a web application.   It asks for connection/schema/user/password/table then you push go.
+This is a web application.   It asks for connection/schema/user/password/table then you push compute.
 The application then connects to the database, and executes one or more sql statements to analyze
 a table.  It will use a single sql statement as its first pass, then if it needs to gather 
 data counts, it will execute a separate pass to gather the Data Counts.
@@ -47,6 +45,21 @@ data counts, it will execute a separate pass to gather the Data Counts.
 
 get each column name and type, and max, min, distinct, null count for each column
   
+
+## Build and Run
+
+### On Mysql
+
+    $ export STATY_DATABASE_SPEC="{:dbtype \"mysql\"  :dbname \"quiz\" }"
+    $ lein uberjar
+    $ java -jar target/staty-0.0.1-SNAPSHOT-standalone.jar
+    
+### On Oracle
+
+    $ export STATY_DATABASE_SPEC="{:classname \"oracle.jdbc.driver.OracleDriver\" :subprotocol \"oracle\" :subname \"thin:@my-oracle-host:1521/ENGR\"}"
+    $ lein uberjar
+    $ java -classpath target/staty-0.0.1-SNAPSHOT-standalone.jar:somepath/ojdbc7_g-12.1.0.2.jar staty.server
+    
 
 ## Future
 
