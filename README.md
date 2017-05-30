@@ -41,10 +41,10 @@ The application then connects to the database, and executes one or more sql stat
 a table.  It will use a single sql statement as its first pass, then if it needs to gather 
 data counts, it will execute a separate pass to gather the Data Counts.
 
-### Step 1 column metadata
-
-get each column name and type, and max, min, distinct, null count for each column
-  
+Steps
+- get column metadata (column name, type, is_nullable)
+- get for each column; sum not null (for nullable columns), min, max, distinct
+- (not yet implemented) for columns with low distince count (less than 8 ?)  get counts for each value
 
 ## Build and Run
 
