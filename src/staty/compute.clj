@@ -15,11 +15,11 @@
 
 (defn make-single-type-column [col]
   (assoc (dissoc col :type_name :column_size :is_nullable)
-    :type (str (:type_name col) "(" (:column_size col) ")" (if (= "NO" (:is_nullable col)) " NOT NULL" ""))))
+     :type (str (:type_name col) "(" (:column_size col) ")" (if (= "NO" (:is_nullable col)) " NOT NULL" ""))))
 
 (defn get-column-metadata [db-spec table]
   (map #(make-single-type-column
-          (select-keys % [:column_name :is_nullable :type_name :column_size]))
+         (select-keys % [:column_name :is_nullable :type_name :column_size]))
        (j/with-db-metadata [md db-spec] (j/metadata-result (.getColumns md nil (:user db-spec) table nil)))))
 
 (defn merge-stats [single-column-metadata db-stats-results stats-names]
@@ -45,15 +45,26 @@
 
 (defn stats-to-text [stats]
   (with-out-str
+<<<<<<< HEAD
     (println "\nTable: " (:table_name stats) "   Rows: " (format "%,.0f" (:all_count stats)))
+=======
+    (println "\nTable: " (:table_name stats) "   Rows: " (format "%,d" (:all_count stats)))
+>>>>>>> 01ccf99d73d11500c0a029d4030947e55f36ced2
     (clojure.pprint/print-table (:cols stats))))
 
 (defn compute-stats [username password schema table]
   (let [db-spec (assoc (edn/read-string (System/getenv "STATY_DATABASE_SPEC"))
+<<<<<<< HEAD
                   :user username
                   :password password)
         _ (clojure.pprint/pprint db-spec)
         stats (get-table-stats db-spec table)]
     (h/html
       [:pre (stats-to-text stats)])))
+=======
+                       :user username
+                       :password password)
+        stats (get-table-stats db-spec table)]
+    (stats-to-text stats)))
+>>>>>>> 01ccf99d73d11500c0a029d4030947e55f36ced2
 
