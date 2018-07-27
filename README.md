@@ -84,6 +84,12 @@ To learn more about configuring Logback, read its [documentation](http://logback
 3. Connect your editor to the running REPL session.
    Re-evaluated code will be seen immediately in the service.
 
+## Run on a server,
+
+$ lein uberjar
+$  scp target/staty-0.0.1-SNAPSHOT-standalone.jar SomeServer:staty.jar
+ssh SomeServer java -jar staty.jar
+
 ## Links
 * [Other examples](https://github.com/pedestal/samples)
 

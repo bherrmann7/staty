@@ -18,18 +18,18 @@
   <form method='post'>
   <table>
      <tr>
-         <td>Username <td><input name=username type=text field=35>
+         <td>Database Schema/Username <td><input name=username type=text size=50 >
      <tr>
-         <td>Password<td><input name=password type=password field=35 >
+         <td>Database Password<td><input name=password type=password size=35 >
      <tr>
-         <td>Table  <td><input name=table type=text field=35 >
+         <td>Table  <td><input name=table type=text size=50 >
       <tr>
       <td><input type=submit value=Compute>
   "))
 
 (defn compute-stats [request]
   (let [{:strs [username table password]} (:params request)
-        stats (staty.compute/compute-stats username password username table)]
+        stats (staty.compute/compute-stats (.toUpperCase username) password (.toUpperCase username) (.toUpperCase table))]
     (ring-resp/response (str "<h1>Staty McStatface</h1>" stats))))
 
 ;; Defines "/" and "/about" routes with their associated :get handlers.

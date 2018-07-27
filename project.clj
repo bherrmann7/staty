@@ -1,6 +1,9 @@
 (defproject staty "0.0.1-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "Provides statistics for a databases tables"
   :url "http://example.com/FIXME"
+  ; If using an oracle driver, uncomment this next line and fix the repository reference
+  ; :repositories [["myrepo" "http://maven.myserver/nexus/..."]]
+  :repositories [["humedica" "http://maven.humedica.net/nexus/content/groups/hit-combined/"]]
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
@@ -19,7 +22,8 @@
 
                  [org.clojure/java.jdbc "0.7.0-alpha3"]
                  [mysql/mysql-connector-java "5.1.6"]
-
+; also add a repository above
+                 [com.oracle.jdbc/ojdbc7_g "12.1.0.2"]
                  [hiccup "1.0.5"]]
   :min-lein-version "2.0.0"
   :resource-paths ["config", "resources"]
