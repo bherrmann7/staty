@@ -3,7 +3,7 @@
 
 ## Introduction
 
-An application for analysis of the contents of tables.
+An application for analysis of the contents of database tables.
 
 Named after https://www.nytimes.com/2016/03/22/world/europe/boaty-mcboatface-what-you-get-when-you-let-the-internet-decide.html
 
@@ -64,7 +64,7 @@ Steps
     $ java -classpath target/staty-0.0.1-SNAPSHOT-standalone.jar:somepath/ojdbc7_g-12.1.0.2.jar staty.server
     
 
-## Future
+## Possible Enhancements
 
  - bootstrap ui
  - allow many tables to be queried
